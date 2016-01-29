@@ -125,7 +125,6 @@ local function initialize()
     local button = contents.ListenAutomatically.RadioButton
     connectAutomatically = RadioButton.new(button, setting)
   end
-  local close = interface.Container.Header.Close
 
   local function connect()
     conManager:Connect()
@@ -167,7 +166,7 @@ local function initialize()
 
   connectAutomatically.StateChanged.Event:connect(onConnectAutomaticallyChanged)
   connectionToggle.MouseButton1Down:connect(onConnectionToggled)
-  close.MouseButton1Down:connect(onPluginToggled)
+  interface.Close.MouseButton1Down:connect(onPluginToggled)
   button.Click:connect(onPluginToggled)
 end
 

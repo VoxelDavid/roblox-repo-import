@@ -14,8 +14,12 @@ function Interface.new(gui)
 
   self.Gui = gui
   self.Container = gui.Container
+  self.Close = self:GetElementByName("Close")
 
   self:Intialize()
+  self.Close.MouseButton1Down:connect(function()
+    self:Hide()
+  end)
 
   return self
 end
@@ -31,6 +35,10 @@ end
 function Interface:Intialize()
   self.Gui.Parent = coreGui
   self:Hide()
+end
+
+function Interface:GetElementByName(name)
+  return self.Container:FindFirstChild(name, true)
 end
 
 return getfenv()
