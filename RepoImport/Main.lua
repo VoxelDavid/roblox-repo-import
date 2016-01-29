@@ -99,23 +99,29 @@ end
 -- Initialization
 --------------------------------------------------------------------------------
 
-local function initialize()
-  local interface do
-    local gui = script.Parent.RepoImportUI
-    interface = ui.Interface.new(gui)
-  end
+local function getInterface()
+  local gui = script.Parent.RepoImportUI
+  local interface = ui.Interface.new(gui)
+  interface:Initialize()
 
-  local conManager do
-    local event = IMPORT_LOCATION.ChildAdded
+  return interface
+end
 
-    local function listener(obj)
-      if isRepo(obj) then
-        importRepo(obj)
-      end
+local function getConnectionManager()
+  local event = IMPORT_LOCATION.ChildAdded
+
+  local function listener()
+    if isRepo(obj) then
+      importRepo(obj)
     end
-
-    conManager = events.ConnectionManager.new(event, listener)
   end
+
+  return events.ConnectionManager.new(event, listener)
+end
+
+local function initialize()
+  local interface = getInterface()
+  local conManager = getConnectionManager()
 
   -- Gui elements
   local contents = interface.Container.Contents

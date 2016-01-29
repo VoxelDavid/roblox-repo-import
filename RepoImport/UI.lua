@@ -16,7 +16,6 @@ function Interface.new(gui)
   self.Container = gui.Container
   self.Close = self:GetElementByName("Close")
 
-  self:Intialize()
   self.Close.MouseButton1Down:connect(function()
     self:Hide()
   end)
