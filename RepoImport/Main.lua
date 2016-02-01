@@ -37,8 +37,6 @@ local function initializeSettings()
   local runBefore = plugin:GetSetting("RunBefore")
 
   if not runBefore then
-    print("Setting ReporImport settings for the first time")
-
     plugin:SetSetting("RunBefore", true)
 
     -- Allows repositories to be listened for immediately.
