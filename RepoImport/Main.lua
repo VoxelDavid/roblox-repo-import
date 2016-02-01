@@ -110,7 +110,7 @@ end
 local function getConnectionManager()
   local event = IMPORT_LOCATION.ChildAdded
 
-  local function listener()
+  local function listener(obj)
     if isRepo(obj) then
       importRepo(obj)
     end
