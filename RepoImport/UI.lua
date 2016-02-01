@@ -5,6 +5,25 @@ local coreGui = game:GetService("CoreGui")
 -- Interface
 --------------------------------------------------------------------------------
 
+--[[
+  Class for managing a generic Gui.
+
+  gui : ScreenGui
+    This is the Gui that the class will be managing.
+
+    It requries the following elements to exist inside of it:
+
+    - "Container" : Frame
+
+      This will act as the main wrapper for the Gui. All of your other elements
+      go inside of it.
+
+    - "Close" : GuiButton
+
+      This is the button that will close the Gui. It can be located anywhere
+      inside of the gui's descendants, but there should only be one instance
+      with this name.
+--]]
 Interface = {}
 Interface.__index = Interface
 
