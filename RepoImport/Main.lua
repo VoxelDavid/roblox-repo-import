@@ -3,8 +3,11 @@
 -- Imports
 --------------------------------------------------------------------------------
 
-local events = require(script.Parent.Events)
-local ui = require(script.Parent.UI)
+local events = script.Parent.Events
+local ui = script.Parent.UI
+
+local ConnectionManager = require(events.ConnectionManager)
+local PluginInterface = require(ui.PluginInterface)
 
 
 --------------------------------------------------------------------------------
@@ -98,7 +101,7 @@ end
 
 local function getInterface()
   local gui = script.Parent.RepoImportUI
-  local interface = ui.PluginInterface.new(plugin, gui)
+  local interface = PluginInterface.new(plugin, gui)
   interface:MoveToStudio()
 
   return interface
@@ -113,7 +116,7 @@ local function getConnectionManager()
     end
   end
 
-  return events.ConnectionManager.new(event, listener)
+  return ConnectionManager.new(event, listener)
 end
 
 local function initialize()

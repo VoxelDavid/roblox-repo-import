@@ -1,9 +1,9 @@
-
 --[[
   Class for managing the Connection object returned by events.
 
   This lets you connect, disconnect and reconnect an event to a listner
 --]]
+
 ConnectionManager = {}
 ConnectionManager.__index = ConnectionManager
 
@@ -39,4 +39,4 @@ function ConnectionManager:Connect()
   end
 end
 
-return getfenv()
+return ConnectionManager
