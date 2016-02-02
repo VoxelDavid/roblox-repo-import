@@ -86,10 +86,10 @@ function PluginInterface.new(plugin, gui)
 
   local listenAutomatically = self:GetElementByName("ListenAutomatically")
   self.ListenAutomatically = RadioButton.new(listenAutomatically.RadioButton,
-    plugin:GetSetting("ListenAutomatically"))
+    plugin:GetSetting("ListenByDefault"))
 
   self.ListenAutomatically.StateChanged.Event:connect(function(newValue)
-    plugin:SetSetting("ListenAutomatically", newValue)
+    plugin:SetSetting("ListenByDefault", newValue)
   end)
 
   return self
