@@ -5,7 +5,6 @@
 
 local events = require(script.Parent.Events)
 local ui = require(script.Parent.UI)
-local RadioButton = require(script.Parent.RadioButton)
 
 
 --------------------------------------------------------------------------------
@@ -99,8 +98,8 @@ end
 
 local function getInterface()
   local gui = script.Parent.RepoImportUI
-  local interface = ui.Interface.new(gui)
-  interface:Initialize()
+  local interface = ui.PluginInterface.new(plugin, gui)
+  interface:MoveToStudio()
 
   return interface
 end
@@ -121,14 +120,8 @@ local function initialize()
   local interface = getInterface()
   local conManager = getConnectionManager()
 
-  -- Gui elements
-  local contents = interface.Container.Contents
-  local connectionToggle = contents.ConnectionToggle
-  local connectAutomatically do
-    local setting = plugin:GetSetting("ListenByDefault")
-    local button = contents.ListenAutomatically.RadioButton
-    connectAutomatically = RadioButton.new(button, setting)
-  end
+  local connectionToggle = interface.ConnectionToggle
+  local listenAutomatically = interface.ListenAutomatically
 
   local function connect()
     conManager:Connect()
@@ -160,15 +153,10 @@ local function initialize()
     end
   end
 
-  local function onConnectAutomaticallyChanged(newValue)
-    plugin:SetSetting("ListenByDefault", newValue)
-  end
-
   if plugin:GetSetting("ListenByDefault") then
     connect()
   end
 
-  connectAutomatically.StateChanged.Event:connect(onConnectAutomaticallyChanged)
   connectionToggle.MouseButton1Down:connect(onConnectionToggled)
   interface.Close.MouseButton1Down:connect(onPluginToggled)
   button.Click:connect(onPluginToggled)
