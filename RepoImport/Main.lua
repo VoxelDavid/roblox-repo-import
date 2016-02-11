@@ -1,4 +1,6 @@
 
+local changeHistory = game:GetService("ChangeHistoryService")
+
 --------------------------------------------------------------------------------
 -- Imports
 --------------------------------------------------------------------------------
@@ -90,6 +92,7 @@ local function overlayFolderStructure(folder, parent)
 end
 
 local function importRepo(repo)
+  changeHistory:SetWaypoint("Import Repository")
   overlayFolderStructure(repo, OVERLAY_LOCATION)
   repo:Destroy()
 end
